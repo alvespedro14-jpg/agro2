@@ -14,6 +14,32 @@ window.addEventListener("scroll", () => {
     }
   });
 });
+let fontSize = 16;
+let speech;
 
-// Mensagem inicial
-console.log("Site do Agro no Brasil carregado com sucesso 🌱");
+function increaseFont() {
+  fontSize += 2;
+  document.body.style.fontSize = fontSize + "px";
+}
+
+function decreaseFont() {
+  fontSize -= 2;
+  document.body.style.fontSize = fontSize + "px";
+}
+
+function toggleContrast() {
+  document.body.classList.toggle("high-contrast");
+  document.body.classList.toggle("large-text");
+}
+
+// Leitura em voz alta (acessibilidade para deficiência visual)
+function readPage() {
+  const text = document.body.innerText;
+  speech = new SpeechSynthesisUtterance(text);
+  speech.lang = "pt-BR";
+  window.speechSynthesis.speak(speech);
+}
+
+function stopReading() {
+  window.speechSynthesis.cancel();
+}
